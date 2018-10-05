@@ -71,15 +71,24 @@ namespace AES_encryptor
             try
             {
                 AES256 aes = new AES256(txtPassphrase.Text);
-                aes.EncryptFile(txtOpenFile.Text + "\\" + txtFileName.Text, setFileName());
-                if (chDeleteOrigin.Checked)
+                if(pnl_folder.Visible)
                 {
-                    string path = txtOpenFile.Text + "\\" + txtFileName.Text;
-                    if (File.Exists(path))
+                    List<string> pathes = DirSearch(txtSelectFolder.Text, false);
+                    // from here
+                }
+                else
+                {
+                    aes.EncryptFile(txtOpenFile.Text + "\\" + txtFileName.Text, setFileName());
+                    if (chDeleteOrigin.Checked)
                     {
-                        File.Delete(path);
+                        string path = txtOpenFile.Text + "\\" + txtFileName.Text;
+                        if (File.Exists(path))
+                        {
+                            File.Delete(path);
+                        }
                     }
                 }
+                
                 clearForm();
                 setResultLabel(true);
             }
@@ -122,7 +131,7 @@ namespace AES_encryptor
         /// Enables the decryption button only if the file is decrypted.
         /// also check that all the requaired fuilds are full.
         /// </summary>
-        private void setOptions()
+        private void setOptionsFile()
         {
             if (txtPassphrase.Text.Length >= MIN_PASS_SIZE)
             {
@@ -222,22 +231,70 @@ namespace AES_encryptor
                 lblResult.Text = "Fail! - " + text;
             }
         }
+        /// <summary>
+        /// search files in subfolders
+        /// </summary>
+        private List<String> DirSearch(string sDir, bool isEncrypted)
+        {
+            List<String> files = new List<String>();
+            try
+            {
+                foreach (string f in Directory.GetFiles(sDir))
+                {
+                    if (    (isEncrypted && Path.GetExtension(f) == ENCRYPTED_FILE_EXTANTION) || 
+                            (!isEncrypted && Path.GetExtension(f) != ENCRYPTED_FILE_EXTANTION)  )
+                        files.Add(f);
+                }
+                foreach (string d in Directory.GetDirectories(sDir))
+                {
+                    files.AddRange(DirSearch(d, isEncrypted));
+                }
+            }
+            catch (System.Exception excpt)
+            {
+                //MessageBox.Show(excpt.Message);
+            }
+
+            return files;
+        }
 
         private void txtPassphrase_TextChanged(object sender, EventArgs e)
         {
-            setOptions();
+            setOptionsFile();
         }
         private void chEnableAll_CheckedChanged(object sender, EventArgs e)
         {
-            setOptions();
+            setOptionsFile();
         }
         private void txtFileName_TextChanged(object sender, EventArgs e)
         {
-            setOptions();
+            setOptionsFile();
         }
         private void txtEnding_TextChanged(object sender, EventArgs e)
         {
-            setOptions();
+            setOptionsFile();
+        }
+
+
+        private void btn2Folder_Click(object sender, EventArgs e)
+        {
+            pnl_folder.Visible = true;
+        }
+
+        private void btn2File_Click(object sender, EventArgs e)
+        {
+            pnl_folder.Visible = false;
+        }
+
+        private void btnOpenFolder_Click(object sender, EventArgs e)
+        {
+            DialogResult result = folderBrowserDialog_encFolder.ShowDialog(); // Show the dialog.
+            if (result == DialogResult.OK) // Test result.
+            {
+                txtSelectFolder.Text = folderBrowserDialog_encFolder.SelectedPath;
+                btnEncrypt.Enabled = true;
+                btnDecrypt.Enabled = true;
+            }
         }
     }
 }
