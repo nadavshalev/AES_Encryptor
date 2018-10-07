@@ -30,15 +30,9 @@
         {
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
-            this.pnl_file = new System.Windows.Forms.Panel();
-            this.pnl_folder = new System.Windows.Forms.Panel();
-            this.label7 = new System.Windows.Forms.Label();
-            this.txtSelectFolder = new System.Windows.Forms.TextBox();
-            this.btnOpenFolder = new System.Windows.Forms.Button();
+            this.pnl_buttons = new System.Windows.Forms.Panel();
             this.lblResult = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.txtFileName = new System.Windows.Forms.TextBox();
             this.txtPassphrase = new System.Windows.Forms.TextBox();
             this.chEnableAll = new System.Windows.Forms.CheckBox();
             this.btnDecrypt = new System.Windows.Forms.Button();
@@ -46,6 +40,16 @@
             this.chDeleteOrigin = new System.Windows.Forms.CheckBox();
             this.btnEncrypt = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
+            this.pnl_folder = new System.Windows.Forms.Panel();
+            this.btn2File = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
+            this.txtSelectFolder = new System.Windows.Forms.TextBox();
+            this.btnOpenFolder = new System.Windows.Forms.Button();
+            this.folderBrowserDialog_encFolder = new System.Windows.Forms.FolderBrowserDialog();
+            this.pnl_file = new System.Windows.Forms.Panel();
+            this.btn2Folder = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
+            this.txtFileName = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -54,44 +58,124 @@
             this.btnDestFile = new System.Windows.Forms.Button();
             this.txtOpenFile = new System.Windows.Forms.TextBox();
             this.BtnOpenFile = new System.Windows.Forms.Button();
-            this.btn2File = new System.Windows.Forms.Button();
-            this.btn2Folder = new System.Windows.Forms.Button();
-            this.folderBrowserDialog_encFolder = new System.Windows.Forms.FolderBrowserDialog();
-            this.pnl_file.SuspendLayout();
+            this.pnl_buttons.SuspendLayout();
             this.pnl_folder.SuspendLayout();
+            this.pnl_file.SuspendLayout();
             this.SuspendLayout();
             // 
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // pnl_file
+            // pnl_buttons
             // 
-            this.pnl_file.Controls.Add(this.btn2Folder);
-            this.pnl_file.Controls.Add(this.lblResult);
-            this.pnl_file.Controls.Add(this.label5);
-            this.pnl_file.Controls.Add(this.label6);
-            this.pnl_file.Controls.Add(this.txtFileName);
-            this.pnl_file.Controls.Add(this.txtPassphrase);
-            this.pnl_file.Controls.Add(this.chEnableAll);
-            this.pnl_file.Controls.Add(this.btnDecrypt);
-            this.pnl_file.Controls.Add(this.chAddEnding);
-            this.pnl_file.Controls.Add(this.chDeleteOrigin);
-            this.pnl_file.Controls.Add(this.btnEncrypt);
-            this.pnl_file.Controls.Add(this.label4);
-            this.pnl_file.Controls.Add(this.label3);
-            this.pnl_file.Controls.Add(this.label2);
-            this.pnl_file.Controls.Add(this.label1);
-            this.pnl_file.Controls.Add(this.txtEnding);
-            this.pnl_file.Controls.Add(this.txtFolder);
-            this.pnl_file.Controls.Add(this.btnDestFile);
-            this.pnl_file.Controls.Add(this.txtOpenFile);
-            this.pnl_file.Controls.Add(this.BtnOpenFile);
-            this.pnl_file.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnl_file.Location = new System.Drawing.Point(0, 0);
-            this.pnl_file.Name = "pnl_file";
-            this.pnl_file.Size = new System.Drawing.Size(565, 424);
-            this.pnl_file.TabIndex = 0;
+            this.pnl_buttons.Controls.Add(this.lblResult);
+            this.pnl_buttons.Controls.Add(this.label5);
+            this.pnl_buttons.Controls.Add(this.txtPassphrase);
+            this.pnl_buttons.Controls.Add(this.chEnableAll);
+            this.pnl_buttons.Controls.Add(this.btnDecrypt);
+            this.pnl_buttons.Controls.Add(this.chAddEnding);
+            this.pnl_buttons.Controls.Add(this.chDeleteOrigin);
+            this.pnl_buttons.Controls.Add(this.btnEncrypt);
+            this.pnl_buttons.Controls.Add(this.label4);
+            this.pnl_buttons.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.pnl_buttons.Location = new System.Drawing.Point(0, 148);
+            this.pnl_buttons.Name = "pnl_buttons";
+            this.pnl_buttons.Size = new System.Drawing.Size(565, 276);
+            this.pnl_buttons.TabIndex = 0;
+            // 
+            // lblResult
+            // 
+            this.lblResult.AutoSize = true;
+            this.lblResult.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.lblResult.Location = new System.Drawing.Point(16, 254);
+            this.lblResult.Name = "lblResult";
+            this.lblResult.Size = new System.Drawing.Size(52, 17);
+            this.lblResult.TabIndex = 40;
+            this.lblResult.Text = "label7";
+            this.lblResult.Visible = false;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.label5.Location = new System.Drawing.Point(9, 77);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(72, 17);
+            this.label5.TabIndex = 39;
+            this.label5.Text = "Settings:";
+            // 
+            // txtPassphrase
+            // 
+            this.txtPassphrase.Location = new System.Drawing.Point(12, 42);
+            this.txtPassphrase.Name = "txtPassphrase";
+            this.txtPassphrase.Size = new System.Drawing.Size(543, 20);
+            this.txtPassphrase.TabIndex = 36;
+            this.txtPassphrase.UseSystemPasswordChar = true;
+            this.txtPassphrase.TextChanged += new System.EventHandler(this.txtPassphrase_TextChanged);
+            // 
+            // chEnableAll
+            // 
+            this.chEnableAll.AutoSize = true;
+            this.chEnableAll.Location = new System.Drawing.Point(131, 111);
+            this.chEnableAll.Name = "chEnableAll";
+            this.chEnableAll.Size = new System.Drawing.Size(73, 17);
+            this.chEnableAll.TabIndex = 35;
+            this.chEnableAll.Text = "Enable All";
+            this.chEnableAll.UseVisualStyleBackColor = true;
+            this.chEnableAll.CheckedChanged += new System.EventHandler(this.chEnableAll_CheckedChanged);
+            // 
+            // btnDecrypt
+            // 
+            this.btnDecrypt.Enabled = false;
+            this.btnDecrypt.Location = new System.Drawing.Point(292, 171);
+            this.btnDecrypt.Name = "btnDecrypt";
+            this.btnDecrypt.Size = new System.Drawing.Size(263, 55);
+            this.btnDecrypt.TabIndex = 34;
+            this.btnDecrypt.Text = "Decrypt";
+            this.btnDecrypt.UseVisualStyleBackColor = true;
+            this.btnDecrypt.Click += new System.EventHandler(this.btnDecrypt_Click);
+            // 
+            // chAddEnding
+            // 
+            this.chAddEnding.AutoSize = true;
+            this.chAddEnding.Location = new System.Drawing.Point(12, 135);
+            this.chAddEnding.Name = "chAddEnding";
+            this.chAddEnding.Size = new System.Drawing.Size(81, 17);
+            this.chAddEnding.TabIndex = 33;
+            this.chAddEnding.Text = "Add Ending";
+            this.chAddEnding.UseVisualStyleBackColor = true;
+            // 
+            // chDeleteOrigin
+            // 
+            this.chDeleteOrigin.AutoSize = true;
+            this.chDeleteOrigin.Location = new System.Drawing.Point(12, 111);
+            this.chDeleteOrigin.Name = "chDeleteOrigin";
+            this.chDeleteOrigin.Size = new System.Drawing.Size(87, 17);
+            this.chDeleteOrigin.TabIndex = 32;
+            this.chDeleteOrigin.Text = "Delete Origin";
+            this.chDeleteOrigin.UseVisualStyleBackColor = true;
+            // 
+            // btnEncrypt
+            // 
+            this.btnEncrypt.Enabled = false;
+            this.btnEncrypt.Location = new System.Drawing.Point(12, 171);
+            this.btnEncrypt.Name = "btnEncrypt";
+            this.btnEncrypt.Size = new System.Drawing.Size(261, 55);
+            this.btnEncrypt.TabIndex = 31;
+            this.btnEncrypt.Text = "Encrypt";
+            this.btnEncrypt.UseVisualStyleBackColor = true;
+            this.btnEncrypt.Click += new System.EventHandler(this.btnEncrypt_Click);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.label4.Location = new System.Drawing.Point(9, 13);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(98, 17);
+            this.label4.TabIndex = 30;
+            this.label4.Text = "Passphrase:";
             // 
             // pnl_folder
             // 
@@ -103,7 +187,16 @@
             this.pnl_folder.Name = "pnl_folder";
             this.pnl_folder.Size = new System.Drawing.Size(565, 142);
             this.pnl_folder.TabIndex = 41;
-            this.pnl_folder.Visible = false;
+            // 
+            // btn2File
+            // 
+            this.btn2File.Location = new System.Drawing.Point(469, 0);
+            this.btn2File.Name = "btn2File";
+            this.btn2File.Size = new System.Drawing.Size(96, 23);
+            this.btn2File.TabIndex = 31;
+            this.btn2File.Text = "Encrypt File";
+            this.btn2File.UseVisualStyleBackColor = true;
+            this.btn2File.Click += new System.EventHandler(this.btn2File_Click);
             // 
             // label7
             // 
@@ -119,6 +212,7 @@
             // 
             this.txtSelectFolder.Location = new System.Drawing.Point(176, 86);
             this.txtSelectFolder.Name = "txtSelectFolder";
+            this.txtSelectFolder.ReadOnly = true;
             this.txtSelectFolder.Size = new System.Drawing.Size(289, 20);
             this.txtSelectFolder.TabIndex = 29;
             // 
@@ -132,26 +226,33 @@
             this.btnOpenFolder.UseVisualStyleBackColor = true;
             this.btnOpenFolder.Click += new System.EventHandler(this.btnOpenFolder_Click);
             // 
-            // lblResult
+            // pnl_file
             // 
-            this.lblResult.AutoSize = true;
-            this.lblResult.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.lblResult.Location = new System.Drawing.Point(16, 389);
-            this.lblResult.Name = "lblResult";
-            this.lblResult.Size = new System.Drawing.Size(52, 17);
-            this.lblResult.TabIndex = 40;
-            this.lblResult.Text = "label7";
-            this.lblResult.Visible = false;
+            this.pnl_file.Controls.Add(this.btn2Folder);
+            this.pnl_file.Controls.Add(this.label6);
+            this.pnl_file.Controls.Add(this.txtFileName);
+            this.pnl_file.Controls.Add(this.label3);
+            this.pnl_file.Controls.Add(this.label2);
+            this.pnl_file.Controls.Add(this.label1);
+            this.pnl_file.Controls.Add(this.txtEnding);
+            this.pnl_file.Controls.Add(this.txtFolder);
+            this.pnl_file.Controls.Add(this.btnDestFile);
+            this.pnl_file.Controls.Add(this.txtOpenFile);
+            this.pnl_file.Controls.Add(this.BtnOpenFile);
+            this.pnl_file.Location = new System.Drawing.Point(0, 0);
+            this.pnl_file.Name = "pnl_file";
+            this.pnl_file.Size = new System.Drawing.Size(565, 142);
+            this.pnl_file.TabIndex = 42;
             // 
-            // label5
+            // btn2Folder
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.label5.Location = new System.Drawing.Point(9, 212);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(72, 17);
-            this.label5.TabIndex = 39;
-            this.label5.Text = "Settings:";
+            this.btn2Folder.Location = new System.Drawing.Point(469, 0);
+            this.btn2Folder.Name = "btn2Folder";
+            this.btn2Folder.Size = new System.Drawing.Size(96, 23);
+            this.btn2Folder.TabIndex = 52;
+            this.btn2Folder.Text = "Encrypt Folder";
+            this.btn2Folder.UseVisualStyleBackColor = true;
+            this.btn2Folder.Click += new System.EventHandler(this.btn2Folder_Click);
             // 
             // label6
             // 
@@ -159,7 +260,7 @@
             this.label6.Location = new System.Drawing.Point(414, 19);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(49, 13);
-            this.label6.TabIndex = 38;
+            this.label6.TabIndex = 51;
             this.label6.Text = "file name";
             // 
             // txtFileName
@@ -167,75 +268,8 @@
             this.txtFileName.Location = new System.Drawing.Point(392, 41);
             this.txtFileName.Name = "txtFileName";
             this.txtFileName.Size = new System.Drawing.Size(163, 20);
-            this.txtFileName.TabIndex = 37;
-            // 
-            // txtPassphrase
-            // 
-            this.txtPassphrase.Location = new System.Drawing.Point(12, 177);
-            this.txtPassphrase.Name = "txtPassphrase";
-            this.txtPassphrase.Size = new System.Drawing.Size(543, 20);
-            this.txtPassphrase.TabIndex = 36;
-            this.txtPassphrase.UseSystemPasswordChar = true;
-            // 
-            // chEnableAll
-            // 
-            this.chEnableAll.AutoSize = true;
-            this.chEnableAll.Location = new System.Drawing.Point(131, 246);
-            this.chEnableAll.Name = "chEnableAll";
-            this.chEnableAll.Size = new System.Drawing.Size(73, 17);
-            this.chEnableAll.TabIndex = 35;
-            this.chEnableAll.Text = "Enable All";
-            this.chEnableAll.UseVisualStyleBackColor = true;
-            // 
-            // btnDecrypt
-            // 
-            this.btnDecrypt.Enabled = false;
-            this.btnDecrypt.Location = new System.Drawing.Point(292, 306);
-            this.btnDecrypt.Name = "btnDecrypt";
-            this.btnDecrypt.Size = new System.Drawing.Size(263, 55);
-            this.btnDecrypt.TabIndex = 34;
-            this.btnDecrypt.Text = "Decrypt";
-            this.btnDecrypt.UseVisualStyleBackColor = true;
-            // 
-            // chAddEnding
-            // 
-            this.chAddEnding.AutoSize = true;
-            this.chAddEnding.Location = new System.Drawing.Point(12, 270);
-            this.chAddEnding.Name = "chAddEnding";
-            this.chAddEnding.Size = new System.Drawing.Size(81, 17);
-            this.chAddEnding.TabIndex = 33;
-            this.chAddEnding.Text = "Add Ending";
-            this.chAddEnding.UseVisualStyleBackColor = true;
-            // 
-            // chDeleteOrigin
-            // 
-            this.chDeleteOrigin.AutoSize = true;
-            this.chDeleteOrigin.Location = new System.Drawing.Point(12, 246);
-            this.chDeleteOrigin.Name = "chDeleteOrigin";
-            this.chDeleteOrigin.Size = new System.Drawing.Size(87, 17);
-            this.chDeleteOrigin.TabIndex = 32;
-            this.chDeleteOrigin.Text = "Delete Origin";
-            this.chDeleteOrigin.UseVisualStyleBackColor = true;
-            // 
-            // btnEncrypt
-            // 
-            this.btnEncrypt.Enabled = false;
-            this.btnEncrypt.Location = new System.Drawing.Point(12, 306);
-            this.btnEncrypt.Name = "btnEncrypt";
-            this.btnEncrypt.Size = new System.Drawing.Size(261, 55);
-            this.btnEncrypt.TabIndex = 31;
-            this.btnEncrypt.Text = "Encrypt";
-            this.btnEncrypt.UseVisualStyleBackColor = true;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.label4.Location = new System.Drawing.Point(9, 148);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(98, 17);
-            this.label4.TabIndex = 30;
-            this.label4.Text = "Passphrase:";
+            this.txtFileName.TabIndex = 50;
+            this.txtFileName.TextChanged += new System.EventHandler(this.txtFileName_TextChanged);
             // 
             // label3
             // 
@@ -243,7 +277,7 @@
             this.label3.Location = new System.Drawing.Point(414, 84);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(55, 13);
-            this.label3.TabIndex = 29;
+            this.label3.TabIndex = 49;
             this.label3.Text = "file ending";
             // 
             // label2
@@ -253,7 +287,7 @@
             this.label2.Location = new System.Drawing.Point(12, 84);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(146, 17);
-            this.label2.TabIndex = 28;
+            this.label2.TabIndex = 48;
             this.label2.Text = "Destination Folder:";
             // 
             // label1
@@ -263,7 +297,7 @@
             this.label1.Location = new System.Drawing.Point(13, 19);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(83, 17);
-            this.label1.TabIndex = 27;
+            this.label1.TabIndex = 47;
             this.label1.Text = "Open File:";
             // 
             // txtEnding
@@ -271,7 +305,8 @@
             this.txtEnding.Location = new System.Drawing.Point(389, 104);
             this.txtEnding.Name = "txtEnding";
             this.txtEnding.Size = new System.Drawing.Size(166, 20);
-            this.txtEnding.TabIndex = 26;
+            this.txtEnding.TabIndex = 46;
+            this.txtEnding.TextChanged += new System.EventHandler(this.txtEnding_TextChanged);
             // 
             // txtFolder
             // 
@@ -279,16 +314,17 @@
             this.txtFolder.Name = "txtFolder";
             this.txtFolder.ReadOnly = true;
             this.txtFolder.Size = new System.Drawing.Size(289, 20);
-            this.txtFolder.TabIndex = 25;
+            this.txtFolder.TabIndex = 45;
             // 
             // btnDestFile
             // 
             this.btnDestFile.Location = new System.Drawing.Point(12, 104);
             this.btnDestFile.Name = "btnDestFile";
             this.btnDestFile.Size = new System.Drawing.Size(75, 21);
-            this.btnDestFile.TabIndex = 24;
+            this.btnDestFile.TabIndex = 44;
             this.btnDestFile.Text = "Folder";
             this.btnDestFile.UseVisualStyleBackColor = true;
+            this.btnDestFile.Click += new System.EventHandler(this.btnDestFile_Click);
             // 
             // txtOpenFile
             // 
@@ -296,36 +332,17 @@
             this.txtOpenFile.Name = "txtOpenFile";
             this.txtOpenFile.ReadOnly = true;
             this.txtOpenFile.Size = new System.Drawing.Size(289, 20);
-            this.txtOpenFile.TabIndex = 23;
+            this.txtOpenFile.TabIndex = 43;
             // 
             // BtnOpenFile
             // 
             this.BtnOpenFile.Location = new System.Drawing.Point(12, 41);
             this.BtnOpenFile.Name = "BtnOpenFile";
             this.BtnOpenFile.Size = new System.Drawing.Size(75, 21);
-            this.BtnOpenFile.TabIndex = 22;
+            this.BtnOpenFile.TabIndex = 42;
             this.BtnOpenFile.Text = "Open File";
             this.BtnOpenFile.UseVisualStyleBackColor = true;
-            // 
-            // btn2File
-            // 
-            this.btn2File.Location = new System.Drawing.Point(469, 0);
-            this.btn2File.Name = "btn2File";
-            this.btn2File.Size = new System.Drawing.Size(96, 23);
-            this.btn2File.TabIndex = 31;
-            this.btn2File.Text = "Encrypt File";
-            this.btn2File.UseVisualStyleBackColor = true;
-            this.btn2File.Click += new System.EventHandler(this.btn2File_Click);
-            // 
-            // btn2Folder
-            // 
-            this.btn2Folder.Location = new System.Drawing.Point(469, 0);
-            this.btn2Folder.Name = "btn2Folder";
-            this.btn2Folder.Size = new System.Drawing.Size(96, 23);
-            this.btn2Folder.TabIndex = 41;
-            this.btn2Folder.Text = "Encrypt Folder";
-            this.btn2Folder.UseVisualStyleBackColor = true;
-            this.btn2Folder.Click += new System.EventHandler(this.btn2Folder_Click);
+            this.BtnOpenFile.Click += new System.EventHandler(this.BtnOpenFile_Click);
             // 
             // Form1
             // 
@@ -334,12 +351,16 @@
             this.ClientSize = new System.Drawing.Size(565, 424);
             this.Controls.Add(this.pnl_file);
             this.Controls.Add(this.pnl_folder);
+            this.Controls.Add(this.pnl_buttons);
             this.Name = "Form1";
             this.Text = "Form1";
-            this.pnl_file.ResumeLayout(false);
-            this.pnl_file.PerformLayout();
+            this.Load += new System.EventHandler(this.Form1_Load);
+            this.pnl_buttons.ResumeLayout(false);
+            this.pnl_buttons.PerformLayout();
             this.pnl_folder.ResumeLayout(false);
             this.pnl_folder.PerformLayout();
+            this.pnl_file.ResumeLayout(false);
+            this.pnl_file.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -347,11 +368,9 @@
         #endregion
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
-        private System.Windows.Forms.Panel pnl_file;
+        private System.Windows.Forms.Panel pnl_buttons;
         private System.Windows.Forms.Label lblResult;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox txtFileName;
         private System.Windows.Forms.TextBox txtPassphrase;
         private System.Windows.Forms.CheckBox chEnableAll;
         private System.Windows.Forms.Button btnDecrypt;
@@ -359,6 +378,16 @@
         private System.Windows.Forms.CheckBox chDeleteOrigin;
         private System.Windows.Forms.Button btnEncrypt;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Panel pnl_folder;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox txtSelectFolder;
+        private System.Windows.Forms.Button btnOpenFolder;
+        private System.Windows.Forms.Button btn2File;
+        private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog_encFolder;
+        private System.Windows.Forms.Panel pnl_file;
+        private System.Windows.Forms.Button btn2Folder;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox txtFileName;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
@@ -367,13 +396,6 @@
         private System.Windows.Forms.Button btnDestFile;
         private System.Windows.Forms.TextBox txtOpenFile;
         private System.Windows.Forms.Button BtnOpenFile;
-        private System.Windows.Forms.Panel pnl_folder;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox txtSelectFolder;
-        private System.Windows.Forms.Button btnOpenFolder;
-        private System.Windows.Forms.Button btn2Folder;
-        private System.Windows.Forms.Button btn2File;
-        private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog_encFolder;
     }
 }
 
