@@ -25,6 +25,9 @@ namespace AES_encryptor
         {
         }
 
+        /********************* FILE ENCRYPTION  *********************/
+        #region FILE ENCRYPTION
+        
         private void BtnOpenFile_Click(object sender, EventArgs e)
         {
             DialogResult result = openFileDialog1.ShowDialog(); // Show the dialog.
@@ -68,6 +71,235 @@ namespace AES_encryptor
             }
             setOptionsFile();
             chDeleteOrigin.Checked = false;
+        }
+
+        /// <summary>
+        /// Enables the encryption button only if the file is encrypted. 
+        /// Enables the decryption button only if the file is decrypted.
+        /// also check that all the requaired fuilds are full.
+        /// </summary>
+        private void setOptionsFile()
+        {
+            if (txtPassphrase.Text.Length >= MIN_PASS_SIZE)
+            {
+                if (txtEnding.Text != "" && txtOpenFile.Text != "" && txtFolder.Text != "" && txtFileName.Text != "")
+                {
+                    if (chEnableAll.Checked)
+                    {
+                        btnDecrypt.Enabled = true;
+                        btnEncrypt.Enabled = true;
+                        txtOpenFile.ReadOnly = false;
+                        txtFolder.ReadOnly = false;
+                    }
+                    else
+                    {
+                        txtOpenFile.ReadOnly = true;
+                        txtFolder.ReadOnly = true;
+                        if (txtEnding.Text == ENCRYPTED_FILE_EXTANTION)
+                        {
+                            btnEncrypt.Enabled = true;
+                            btnDecrypt.Enabled = false;
+                        }
+                        else
+                        {
+                            btnDecrypt.Enabled = true;
+                            btnEncrypt.Enabled = false;
+                        }
+                    }
+                }
+                else
+                {
+                    btnDecrypt.Enabled = false;
+                    btnEncrypt.Enabled = false;
+                }
+            }
+            else
+            {
+                btnDecrypt.Enabled = false;
+                btnEncrypt.Enabled = false;
+            }
+            lblResult.Visible = false;
+        }
+
+        /// <summary>
+        /// set the return file name acording to the extension type and settings
+        /// </summary>
+        /// <returns>full path of the file</returns>
+        private string setFileName()
+        {
+            if (chAddEnding.Checked)
+            {
+                return txtFolder.Text + "\\" + txtFileName.Text + "." + txtEnding.Text;
+            }
+            else
+            {
+                //get type
+                int ind = txtFileName.Text.LastIndexOf('.');
+                string text = txtFileName.Text.Substring(0, ind);
+                //check older type and add only if not the same
+                ind = text.LastIndexOf('.');
+                string finalName = txtFolder.Text + "\\" + text;
+                if (text.Substring(ind + 1) != txtEnding.Text)
+                    finalName += "." + txtEnding.Text;
+                return finalName;
+            }
+        }
+         
+        #endregion
+
+        /********************* FOLDER ENCRYPTION  *********************/
+        #region FOLDER ENCRYPTION
+
+        private void btnOpenFolder_Click(object sender, EventArgs e)
+        {
+            DialogResult result = folderBrowserDialog_encFolder.ShowDialog(); // Show the dialog.
+            if (result == DialogResult.OK) // Test result.
+            {
+                txtSelectFolder.Text = folderBrowserDialog_encFolder.SelectedPath;
+                btnEncrypt.Enabled = true;
+                btnDecrypt.Enabled = true;
+            }
+            setOptionsFolder();
+        }
+
+        /// <summary>
+        /// Enables the encryption button only if there are files which are encrypted. 
+        /// Enables the decryption button only if are files which are not decrypted.
+        /// also check that all the requaired fuilds are full.
+        /// </summary>
+        private void setOptionsFolder()
+        {
+            if (txtPassphrase.Text.Length >= MIN_PASS_SIZE)
+            {
+                if (chEnableAll.Checked)
+                {
+                    btnDecrypt.Enabled = true;
+                    btnEncrypt.Enabled = true;
+                    txtSelectFolder.ReadOnly = false;
+                }
+                else
+                {
+                    txtSelectFolder.ReadOnly = true;
+                    btnDecrypt.Enabled = false;
+                    btnEncrypt.Enabled = false;
+                    if (checkEncritedfoder(txtSelectFolder.Text, false))
+                    {
+                        btnEncrypt.Enabled = true;
+                    }
+                    if (checkEncritedfoder(txtSelectFolder.Text, true))
+                    {
+                        btnDecrypt.Enabled = true;
+                    }
+                }
+            }
+            else
+            {
+                btnDecrypt.Enabled = false;
+                btnEncrypt.Enabled = false;
+            }
+            lblResult.Visible = false;
+        }
+
+        /// <summary>
+        /// search files in subfoldes
+        /// </summary>
+        /// <param name="sDir">root folder path</param>
+        /// <param name="isEncrypted">true = seach *.enc or else</param>
+        /// <returns>file names list</returns>
+        private List<String> DirSearch(string sDir, bool isEncrypted)
+        {
+            List<String> files = new List<String>();
+            try
+            {
+                foreach (string f in Directory.GetFiles(sDir))
+                {
+                    if ((isEncrypted && Path.GetExtension(f) == "." + ENCRYPTED_FILE_EXTANTION) ||
+                            (!isEncrypted && Path.GetExtension(f) != "." + ENCRYPTED_FILE_EXTANTION))
+                        files.Add(f);
+                }
+                foreach (string d in Directory.GetDirectories(sDir))
+                {
+                    files.AddRange(DirSearch(d, isEncrypted));
+                }
+            }
+            catch (System.Exception excpt)
+            {
+                //MessageBox.Show(excpt.Message);
+            }
+
+            return files;
+        }
+
+        /// <summary>
+        /// check wether encrypted/ unencypted files exists in folder
+        /// </summary>
+        /// <param name="sDir">root folder path</param>
+        /// <param name="isEncrypted">true = seach for encrypeted</param>
+        /// <returns>true if found any</returns>
+        private bool checkEncritedfoder(string sDir, bool isEncrypted)
+        {
+            try
+            {
+                foreach (string f in Directory.GetFiles(sDir))
+                {
+                    if ((isEncrypted && Path.GetExtension(f) == "." + ENCRYPTED_FILE_EXTANTION) ||
+                            (!isEncrypted && Path.GetExtension(f) != "." + ENCRYPTED_FILE_EXTANTION))
+                        return true;
+                }
+                foreach (string d in Directory.GetDirectories(sDir))
+                {
+                    return checkEncritedfoder(d, isEncrypted);
+                }
+            }
+            catch (System.Exception excpt)
+            {
+                //MessageBox.Show(excpt.Message);
+            }
+            return false;
+        }
+
+        #endregion
+
+        /*********************  GENERAL  *********************/
+        #region GENERAL
+
+        /// <summary>
+        /// clear the form for next use
+        /// </summary>
+        private void clearForm()
+        {
+            txtOpenFile.Text = "";
+            txtFileName.Text = "";
+            txtFolder.Text = "";
+            txtEnding.Text = "";
+            txtPassphrase.Text = "";
+            chDeleteOrigin.Checked = false;
+            chAddEnding.Checked = false;
+            chEnableAll.Checked = false;
+            btnDecrypt.Enabled = false;
+            btnEncrypt.Enabled = false;
+            txtSelectFolder.Text = "";
+        }
+
+        /// <summary>
+        /// set the status labe to 'Success' or 'Fail' and change the color
+        /// </summary>
+        /// <param name="res">true for Success, false for Fail</param>
+        /// <param name="text">error text if exists</param>
+        private void setResultLabel(bool res, string text = "")
+        {
+            if (res)
+            {
+                lblResult.Visible = true;
+                lblResult.ForeColor = System.Drawing.Color.Green;
+                lblResult.Text = "Success!";
+            }
+            else
+            {
+                lblResult.Visible = true;
+                lblResult.ForeColor = System.Drawing.Color.Red;
+                lblResult.Text = "Fail! - " + text;
+            }
         }
 
         private void btnEncrypt_Click(object sender, EventArgs e)
@@ -152,197 +384,6 @@ namespace AES_encryptor
             }
         }
 
-        /// <summary>
-        /// Enables the encryption button only if the file is encrypted. 
-        /// Enables the decryption button only if the file is decrypted.
-        /// also check that all the requaired fuilds are full.
-        /// </summary>
-        private void setOptionsFile()
-        {
-            if (txtPassphrase.Text.Length >= MIN_PASS_SIZE)
-            {
-                if (txtEnding.Text != "" && txtOpenFile.Text != "" && txtFolder.Text != "" && txtFileName.Text != "")
-                {
-                    if(chEnableAll.Checked)
-                    {
-                        btnDecrypt.Enabled = true;
-                        btnEncrypt.Enabled = true;
-                        txtOpenFile.ReadOnly = false;
-                        txtFolder.ReadOnly = false;
-                    }
-                    else
-                    {
-                        txtOpenFile.ReadOnly = true;
-                        txtFolder.ReadOnly = true;
-                        if (txtEnding.Text == ENCRYPTED_FILE_EXTANTION)
-                        {
-                            btnEncrypt.Enabled = true;
-                            btnDecrypt.Enabled = false;
-                        }
-                        else
-                        {
-                            btnDecrypt.Enabled = true;
-                            btnEncrypt.Enabled = false;
-                        }
-                    }
-                }
-                else
-                {
-                    btnDecrypt.Enabled = false;
-                    btnEncrypt.Enabled = false;
-                }
-            }
-            else
-            {
-                btnDecrypt.Enabled = false;
-                btnEncrypt.Enabled = false;
-            }
-            lblResult.Visible = false;
-        }
-
-        private void setOptionsFolder()
-        {
-            if (txtPassphrase.Text.Length >= MIN_PASS_SIZE)
-            {
-                if (chEnableAll.Checked)
-                {
-                    btnDecrypt.Enabled = true;
-                    btnEncrypt.Enabled = true;
-                    txtSelectFolder.ReadOnly = false;
-                }
-                else
-                {
-                    txtSelectFolder.ReadOnly = true;
-                    btnDecrypt.Enabled = false;
-                    btnEncrypt.Enabled = false;
-                    if (checkEncritedfoder(txtSelectFolder.Text, false))
-                    {
-                        btnEncrypt.Enabled = true;
-                    }
-                    if (checkEncritedfoder(txtSelectFolder.Text, true))
-                    {
-                        btnDecrypt.Enabled = true;
-                    }
-                }
-            }
-            else
-            {
-                btnDecrypt.Enabled = false;
-                btnEncrypt.Enabled = false;
-            }
-            lblResult.Visible = false;
-        }
-
-        /// <summary>
-        /// set the return file name acording to the extension type and settings
-        /// </summary>
-        /// <returns>full path of the file</returns>
-        private string setFileName()
-        {
-            if(chAddEnding.Checked)
-            {
-                return txtFolder.Text + "\\" + txtFileName.Text + "." + txtEnding.Text;
-            }
-            else
-            {
-                //get type
-                int ind = txtFileName.Text.LastIndexOf('.');
-                string text = txtFileName.Text.Substring(0, ind);
-                //check older type and add only if not the same
-                ind = text.LastIndexOf('.');
-                string finalName = txtFolder.Text + "\\" + text;
-                if (text.Substring(ind+1) != txtEnding.Text)
-                    finalName += "." + txtEnding.Text;
-                return finalName;
-            }
-        }
-
-        /// <summary>
-        /// clear the form for next use
-        /// </summary>
-        private void clearForm()
-        {
-            txtOpenFile.Text = "";
-            txtFileName.Text = "";
-            txtFolder.Text = "";
-            txtEnding.Text = "";
-            txtPassphrase.Text = "";
-            chDeleteOrigin.Checked = false;
-            chAddEnding.Checked = false;
-            chEnableAll.Checked = false;
-            btnDecrypt.Enabled = false;
-            btnEncrypt.Enabled = false;
-            txtSelectFolder.Text = "";
-        }
-
-        /// <summary>
-        /// set the status labe to 'Success' or 'Fail' and change the color
-        /// </summary>
-        /// <param name="res">true for Success, false for Fail</param>
-        /// <param name="text">error text if exists</param>
-        private void setResultLabel(bool res, string text = "")
-        {
-            if (res)
-            {
-                lblResult.Visible = true;
-                lblResult.ForeColor = System.Drawing.Color.Green;
-                lblResult.Text = "Success!";
-            }
-            else
-            {
-                lblResult.Visible = true;
-                lblResult.ForeColor = System.Drawing.Color.Red;
-                lblResult.Text = "Fail! - " + text;
-            }
-        }
-        /// <summary>
-        /// search files in subfolders
-        /// </summary>
-        private List<String> DirSearch(string sDir, bool isEncrypted)
-        {
-            List<String> files = new List<String>();
-            try
-            {
-                foreach (string f in Directory.GetFiles(sDir))
-                {
-                    if (    (isEncrypted && Path.GetExtension(f) == "." + ENCRYPTED_FILE_EXTANTION) || 
-                            (!isEncrypted && Path.GetExtension(f) != "." + ENCRYPTED_FILE_EXTANTION)  )
-                        files.Add(f);
-                }
-                foreach (string d in Directory.GetDirectories(sDir))
-                {
-                    files.AddRange(DirSearch(d, isEncrypted));
-                }
-            }
-            catch (System.Exception excpt)
-            {
-                //MessageBox.Show(excpt.Message);
-            }
-
-            return files;
-        }
-        private bool checkEncritedfoder(string sDir, bool isEncrypted)
-        {
-            try
-            {
-                foreach (string f in Directory.GetFiles(sDir))
-                {
-                    if ((isEncrypted && Path.GetExtension(f) == "." + ENCRYPTED_FILE_EXTANTION) ||
-                            (!isEncrypted && Path.GetExtension(f) != "." + ENCRYPTED_FILE_EXTANTION))
-                        return true;
-                }
-                foreach (string d in Directory.GetDirectories(sDir))
-                {
-                    return checkEncritedfoder(d, isEncrypted);
-                }
-            }
-            catch (System.Exception excpt)
-            {
-                //MessageBox.Show(excpt.Message);
-            }
-            return false;
-        }
-
         private void txtPassphrase_TextChanged(object sender, EventArgs e)
         {
             if(pnl_folder.Visible)
@@ -354,6 +395,7 @@ namespace AES_encryptor
                 setOptionsFile();
             }
         }
+
         private void chEnableAll_CheckedChanged(object sender, EventArgs e)
         {
             if (pnl_folder.Visible)
@@ -365,15 +407,16 @@ namespace AES_encryptor
                 setOptionsFile();
             }
         }
+
         private void txtFileName_TextChanged(object sender, EventArgs e)
         {
             setOptionsFile();
         }
+
         private void txtEnding_TextChanged(object sender, EventArgs e)
         {
             setOptionsFile();
         }
-
 
         private void btn2Folder_Click(object sender, EventArgs e)
         {
@@ -395,16 +438,7 @@ namespace AES_encryptor
             chAddEnding.Enabled = true;
         }
 
-        private void btnOpenFolder_Click(object sender, EventArgs e)
-        {
-            DialogResult result = folderBrowserDialog_encFolder.ShowDialog(); // Show the dialog.
-            if (result == DialogResult.OK) // Test result.
-            {
-                txtSelectFolder.Text = folderBrowserDialog_encFolder.SelectedPath;
-                btnEncrypt.Enabled = true;
-                btnDecrypt.Enabled = true;
-            }
-            setOptionsFolder();
-        }
+        #endregion
+
     }
 }
