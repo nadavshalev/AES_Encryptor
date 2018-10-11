@@ -34,43 +34,11 @@ namespace AES_encryptor
             if (result == DialogResult.OK) // Test result.
             {
                 string fullPath = openFileDialog1.FileName;
-
-                //set the extension box
-                string[] eps = fullPath.Split('.');
-                string ending = eps[eps.Length - 1];
-                if (ending == ENCRYPTED_FILE_EXTANTION)
-                {
-                    if (eps.Length > 2)
-                        txtEnding.Text = eps[eps.Length - 2];
-                    else
-                        txtEnding.Text = "";
-                    chAddEnding.Checked = false;
-                }
-                else
-                {
-                    txtEnding.Text = ENCRYPTED_FILE_EXTANTION;
-                    chAddEnding.Checked = true;
-                }
-
+                
                 //set folder box
-                int sleshid = fullPath.LastIndexOf('\\');
-                txtFolder.Text = fullPath.Substring(0, sleshid);
-                txtOpenFile.Text = txtFolder.Text;
-                txtFileName.Text = fullPath.Substring(sleshid + 1);
+                txtOpenFile.Text = fullPath;
                 setOptionsFile();
-                chDeleteOrigin.Checked = true;
             }
-        }
-
-        private void btnDestFile_Click(object sender, EventArgs e)
-        {
-            DialogResult result = folderBrowserDialog1.ShowDialog(); // Show the dialog.
-            if (result == DialogResult.OK) // Test result.
-            {
-                txtFolder.Text = folderBrowserDialog1.SelectedPath;
-            }
-            setOptionsFile();
-            chDeleteOrigin.Checked = false;
         }
 
         /// <summary>
@@ -80,22 +48,26 @@ namespace AES_encryptor
         /// </summary>
         private void setOptionsFile()
         {
-            if (txtPassphrase.Text.Length >= MIN_PASS_SIZE)
+            if (chEnableAll.Checked)
             {
-                if (txtEnding.Text != "" && txtOpenFile.Text != "" && txtFolder.Text != "" && txtFileName.Text != "")
+                btnDecrypt.Enabled = true;
+                btnEncrypt.Enabled = true;
+                txtOpenFile.ReadOnly = false;
+            }
+            else
+            {
+                //set defult params
+                btnDecrypt.Enabled = false;
+                btnEncrypt.Enabled = false;
+                txtOpenFile.ReadOnly = true;
+
+                if (txtPassphrase.Text.Length >= MIN_PASS_SIZE)
                 {
-                    if (chEnableAll.Checked)
-                    {
-                        btnDecrypt.Enabled = true;
-                        btnEncrypt.Enabled = true;
-                        txtOpenFile.ReadOnly = false;
-                        txtFolder.ReadOnly = false;
-                    }
-                    else
+                    
+                    if (File.Exists(txtOpenFile.Text))
                     {
                         txtOpenFile.ReadOnly = true;
-                        txtFolder.ReadOnly = true;
-                        if (txtEnding.Text == ENCRYPTED_FILE_EXTANTION)
+                        if (Path.GetExtension(txtOpenFile.Text) != "." + ENCRYPTED_FILE_EXTANTION)
                         {
                             btnEncrypt.Enabled = true;
                             btnDecrypt.Enabled = false;
@@ -106,6 +78,11 @@ namespace AES_encryptor
                             btnEncrypt.Enabled = false;
                         }
                     }
+                    else
+                    {
+                        btnDecrypt.Enabled = false;
+                        btnEncrypt.Enabled = false;
+                    }
                 }
                 else
                 {
@@ -113,36 +90,7 @@ namespace AES_encryptor
                     btnEncrypt.Enabled = false;
                 }
             }
-            else
-            {
-                btnDecrypt.Enabled = false;
-                btnEncrypt.Enabled = false;
-            }
             lblResult.Visible = false;
-        }
-
-        /// <summary>
-        /// set the return file name acording to the extension type and settings
-        /// </summary>
-        /// <returns>full path of the file</returns>
-        private string setFileName()
-        {
-            if (chAddEnding.Checked)
-            {
-                return txtFolder.Text + "\\" + txtFileName.Text + "." + txtEnding.Text;
-            }
-            else
-            {
-                //get type
-                int ind = txtFileName.Text.LastIndexOf('.');
-                string text = txtFileName.Text.Substring(0, ind);
-                //check older type and add only if not the same
-                ind = text.LastIndexOf('.');
-                string finalName = txtFolder.Text + "\\" + text;
-                if (text.Substring(ind + 1) != txtEnding.Text)
-                    finalName += "." + txtEnding.Text;
-                return finalName;
-            }
         }
          
         #endregion
@@ -169,15 +117,20 @@ namespace AES_encryptor
         /// </summary>
         private void setOptionsFolder()
         {
-            if (txtPassphrase.Text.Length >= MIN_PASS_SIZE)
+            if (chEnableAll.Checked)
             {
-                if (chEnableAll.Checked)
-                {
-                    btnDecrypt.Enabled = true;
-                    btnEncrypt.Enabled = true;
-                    txtSelectFolder.ReadOnly = false;
-                }
-                else
+                btnDecrypt.Enabled = true;
+                btnEncrypt.Enabled = true;
+                txtSelectFolder.ReadOnly = false;
+            }
+            else
+            {
+                //set defult params
+                btnDecrypt.Enabled = false;
+                btnEncrypt.Enabled = false;
+                txtSelectFolder.ReadOnly = true;
+
+                if (txtPassphrase.Text.Length >= MIN_PASS_SIZE)
                 {
                     txtSelectFolder.ReadOnly = true;
                     btnDecrypt.Enabled = false;
@@ -191,11 +144,11 @@ namespace AES_encryptor
                         btnDecrypt.Enabled = true;
                     }
                 }
-            }
-            else
-            {
-                btnDecrypt.Enabled = false;
-                btnEncrypt.Enabled = false;
+                else
+                {
+                    btnDecrypt.Enabled = false;
+                    btnEncrypt.Enabled = false;
+                }
             }
             lblResult.Visible = false;
         }
@@ -269,12 +222,7 @@ namespace AES_encryptor
         private void clearForm()
         {
             txtOpenFile.Text = "";
-            txtFileName.Text = "";
-            txtFolder.Text = "";
-            txtEnding.Text = "";
             txtPassphrase.Text = "";
-            chDeleteOrigin.Checked = false;
-            chAddEnding.Checked = false;
             chEnableAll.Checked = false;
             btnDecrypt.Enabled = false;
             btnEncrypt.Enabled = false;
@@ -321,14 +269,11 @@ namespace AES_encryptor
                 }
                 else
                 {
-                    aes.EncryptFile(txtOpenFile.Text + "\\" + txtFileName.Text, setFileName());
-                    if (chDeleteOrigin.Checked)
+                    string path = txtOpenFile.Text;
+                    aes.EncryptFile(path, path + "." + ENCRYPTED_FILE_EXTANTION);
+                    if (File.Exists(path))
                     {
-                        string path = txtOpenFile.Text + "\\" + txtFileName.Text;
-                        if (File.Exists(path))
-                        {
-                            File.Delete(path);
-                        }
+                        File.Delete(path);
                     }
                 }
                 
@@ -351,7 +296,8 @@ namespace AES_encryptor
                     List<string> pathes = DirSearch(txtSelectFolder.Text, true);
                     foreach (string path in pathes)
                     {
-                        aes.DecryptFile(path,path.Substring(0,path.Length-4));
+                        string newPath = path.Substring(0, path.Length - ENCRYPTED_FILE_EXTANTION.Length - 1);
+                        aes.DecryptFile(path, newPath);
                         if (File.Exists(path))
                         {
                             File.Delete(path);
@@ -360,14 +306,12 @@ namespace AES_encryptor
                 }
                 else
                 {
-                    aes.DecryptFile(txtOpenFile.Text + "\\" + txtFileName.Text, setFileName());
-                    if (chDeleteOrigin.Checked)
+                    string path = txtOpenFile.Text;
+                    string newPath = path.Substring(0, path.Length - ENCRYPTED_FILE_EXTANTION.Length - 1);
+                    aes.DecryptFile(txtOpenFile.Text, newPath);
+                    if (File.Exists(path))
                     {
-                        string path = txtOpenFile.Text + "\\" + txtFileName.Text;
-                        if (File.Exists(path))
-                        {
-                            File.Delete(path);
-                        }
+                        File.Delete(path);
                     }
                 }
                 clearForm();
@@ -408,11 +352,6 @@ namespace AES_encryptor
             }
         }
 
-        private void txtFileName_TextChanged(object sender, EventArgs e)
-        {
-            setOptionsFile();
-        }
-
         private void txtEnding_TextChanged(object sender, EventArgs e)
         {
             setOptionsFile();
@@ -422,23 +361,16 @@ namespace AES_encryptor
         {
             pnl_folder.Visible = true;
             pnl_file.Visible = false;
-            chDeleteOrigin.Checked = true;
-            chDeleteOrigin.Enabled = false;
-            chAddEnding.Checked = true;
-            chAddEnding.Enabled = false;
+            clearForm();
         }
 
         private void btn2File_Click(object sender, EventArgs e)
         {
             pnl_folder.Visible = false;
             pnl_file.Visible = true;
-            chDeleteOrigin.Checked = false;
-            chDeleteOrigin.Enabled = true;
-            chAddEnding.Checked = false;
-            chAddEnding.Enabled = true;
+            clearForm();
         }
 
         #endregion
-
     }
 }
