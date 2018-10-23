@@ -76,10 +76,10 @@
             // lblResult
             // 
             this.lblResult.AutoSize = true;
-            this.lblResult.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.lblResult.Location = new System.Drawing.Point(16, 254);
+            this.lblResult.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.lblResult.Location = new System.Drawing.Point(15, 250);
             this.lblResult.Name = "lblResult";
-            this.lblResult.Size = new System.Drawing.Size(52, 17);
+            this.lblResult.Size = new System.Drawing.Size(51, 19);
             this.lblResult.TabIndex = 40;
             this.lblResult.Text = "label7";
             this.lblResult.Visible = false;
@@ -87,18 +87,19 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.label5.Location = new System.Drawing.Point(9, 77);
+            this.label5.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.label5.Location = new System.Drawing.Point(9, 85);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(72, 17);
+            this.label5.Size = new System.Drawing.Size(71, 19);
             this.label5.TabIndex = 39;
             this.label5.Text = "Settings:";
             // 
             // txtPassphrase
             // 
+            this.txtPassphrase.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.txtPassphrase.Location = new System.Drawing.Point(12, 42);
             this.txtPassphrase.Name = "txtPassphrase";
-            this.txtPassphrase.Size = new System.Drawing.Size(543, 20);
+            this.txtPassphrase.Size = new System.Drawing.Size(543, 27);
             this.txtPassphrase.TabIndex = 36;
             this.txtPassphrase.UseSystemPasswordChar = true;
             this.txtPassphrase.TextChanged += new System.EventHandler(this.txtPassphrase_TextChanged);
@@ -106,9 +107,10 @@
             // chEnableAll
             // 
             this.chEnableAll.AutoSize = true;
+            this.chEnableAll.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.chEnableAll.Location = new System.Drawing.Point(12, 111);
             this.chEnableAll.Name = "chEnableAll";
-            this.chEnableAll.Size = new System.Drawing.Size(73, 17);
+            this.chEnableAll.Size = new System.Drawing.Size(99, 23);
             this.chEnableAll.TabIndex = 35;
             this.chEnableAll.Text = "Enable All";
             this.chEnableAll.UseVisualStyleBackColor = true;
@@ -117,6 +119,7 @@
             // btnDecrypt
             // 
             this.btnDecrypt.Enabled = false;
+            this.btnDecrypt.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.btnDecrypt.Location = new System.Drawing.Point(292, 171);
             this.btnDecrypt.Name = "btnDecrypt";
             this.btnDecrypt.Size = new System.Drawing.Size(263, 55);
@@ -128,6 +131,7 @@
             // btnEncrypt
             // 
             this.btnEncrypt.Enabled = false;
+            this.btnEncrypt.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.btnEncrypt.Location = new System.Drawing.Point(12, 171);
             this.btnEncrypt.Name = "btnEncrypt";
             this.btnEncrypt.Size = new System.Drawing.Size(261, 55);
@@ -139,10 +143,10 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.label4.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.label4.Location = new System.Drawing.Point(9, 13);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(98, 17);
+            this.label4.Size = new System.Drawing.Size(93, 19);
             this.label4.TabIndex = 30;
             this.label4.Text = "Passphrase:";
             // 
@@ -160,9 +164,10 @@
             // 
             // btn2File
             // 
-            this.btn2File.Location = new System.Drawing.Point(469, 0);
+            this.btn2File.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.btn2File.Location = new System.Drawing.Point(445, 0);
             this.btn2File.Name = "btn2File";
-            this.btn2File.Size = new System.Drawing.Size(96, 23);
+            this.btn2File.Size = new System.Drawing.Size(120, 30);
             this.btn2File.TabIndex = 31;
             this.btn2File.Text = "Encrypt File";
             this.btn2File.UseVisualStyleBackColor = true;
@@ -171,26 +176,28 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.label7.Location = new System.Drawing.Point(226, 16);
+            this.label7.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(84, 40);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(103, 17);
+            this.label7.Size = new System.Drawing.Size(133, 19);
             this.label7.TabIndex = 30;
-            this.label7.Text = "Open Folder:";
+            this.label7.Text = "Folder Encryption";
             // 
             // txtSelectFolder
             // 
-            this.txtSelectFolder.Location = new System.Drawing.Point(176, 86);
+            this.txtSelectFolder.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.txtSelectFolder.Location = new System.Drawing.Point(195, 75);
             this.txtSelectFolder.Name = "txtSelectFolder";
             this.txtSelectFolder.ReadOnly = true;
-            this.txtSelectFolder.Size = new System.Drawing.Size(289, 20);
+            this.txtSelectFolder.Size = new System.Drawing.Size(289, 27);
             this.txtSelectFolder.TabIndex = 29;
             // 
             // btnOpenFolder
             // 
-            this.btnOpenFolder.Location = new System.Drawing.Point(94, 86);
+            this.btnOpenFolder.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.btnOpenFolder.Location = new System.Drawing.Point(83, 75);
             this.btnOpenFolder.Name = "btnOpenFolder";
-            this.btnOpenFolder.Size = new System.Drawing.Size(75, 21);
+            this.btnOpenFolder.Size = new System.Drawing.Size(105, 27);
             this.btnOpenFolder.TabIndex = 28;
             this.btnOpenFolder.Text = "Open Folder";
             this.btnOpenFolder.UseVisualStyleBackColor = true;
@@ -209,9 +216,10 @@
             // 
             // btn2Folder
             // 
-            this.btn2Folder.Location = new System.Drawing.Point(469, 0);
+            this.btn2Folder.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.btn2Folder.Location = new System.Drawing.Point(445, 0);
             this.btn2Folder.Name = "btn2Folder";
-            this.btn2Folder.Size = new System.Drawing.Size(96, 23);
+            this.btn2Folder.Size = new System.Drawing.Size(120, 30);
             this.btn2Folder.TabIndex = 52;
             this.btn2Folder.Text = "Encrypt Folder";
             this.btn2Folder.UseVisualStyleBackColor = true;
@@ -220,26 +228,28 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.label1.Location = new System.Drawing.Point(224, 16);
+            this.label1.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.label1.Location = new System.Drawing.Point(79, 40);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(83, 17);
+            this.label1.Size = new System.Drawing.Size(113, 19);
             this.label1.TabIndex = 47;
-            this.label1.Text = "Open File:";
+            this.label1.Text = "File Encryption";
             // 
             // txtOpenFile
             // 
-            this.txtOpenFile.Location = new System.Drawing.Point(177, 86);
+            this.txtOpenFile.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.txtOpenFile.Location = new System.Drawing.Point(193, 75);
             this.txtOpenFile.Name = "txtOpenFile";
             this.txtOpenFile.ReadOnly = true;
-            this.txtOpenFile.Size = new System.Drawing.Size(289, 20);
+            this.txtOpenFile.Size = new System.Drawing.Size(289, 27);
             this.txtOpenFile.TabIndex = 43;
             // 
             // BtnOpenFile
             // 
-            this.BtnOpenFile.Location = new System.Drawing.Point(94, 86);
+            this.BtnOpenFile.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.BtnOpenFile.Location = new System.Drawing.Point(83, 75);
             this.BtnOpenFile.Name = "BtnOpenFile";
-            this.BtnOpenFile.Size = new System.Drawing.Size(76, 21);
+            this.BtnOpenFile.Size = new System.Drawing.Size(103, 27);
             this.BtnOpenFile.TabIndex = 42;
             this.BtnOpenFile.Text = "Open File";
             this.BtnOpenFile.UseVisualStyleBackColor = true;
@@ -250,9 +260,10 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(565, 424);
-            this.Controls.Add(this.pnl_file);
             this.Controls.Add(this.pnl_folder);
+            this.Controls.Add(this.pnl_file);
             this.Controls.Add(this.pnl_buttons);
+            this.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.MaximizeBox = false;
             this.Name = "Form1";
             this.Text = "Form1";
