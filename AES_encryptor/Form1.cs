@@ -53,6 +53,7 @@ namespace AES_encryptor
                 btnDecrypt.Enabled = true;
                 btnEncrypt.Enabled = true;
                 txtOpenFile.ReadOnly = false;
+                txtOpenFile.BackColor = System.Drawing.SystemColors.Menu;
             }
             else
             {
@@ -60,6 +61,7 @@ namespace AES_encryptor
                 btnDecrypt.Enabled = false;
                 btnEncrypt.Enabled = false;
                 txtOpenFile.ReadOnly = true;
+                txtOpenFile.BackColor = System.Drawing.Color.LightGray;
 
                 if (txtPassphrase.Text.Length >= MIN_PASS_SIZE)
                 {
@@ -122,6 +124,7 @@ namespace AES_encryptor
                 btnDecrypt.Enabled = true;
                 btnEncrypt.Enabled = true;
                 txtSelectFolder.ReadOnly = false;
+                txtSelectFolder.BackColor = System.Drawing.SystemColors.Menu;
             }
             else
             {
@@ -129,6 +132,7 @@ namespace AES_encryptor
                 btnDecrypt.Enabled = false;
                 btnEncrypt.Enabled = false;
                 txtSelectFolder.ReadOnly = true;
+                txtSelectFolder.BackColor = System.Drawing.Color.LightGray;
 
                 if (txtPassphrase.Text.Length >= MIN_PASS_SIZE)
                 {
@@ -371,6 +375,36 @@ namespace AES_encryptor
             clearForm();
         }
 
+        private void btnEncrypt_EnabledChanged(object sender, EventArgs e)
+        {
+            if (btnEncrypt.Enabled)
+            {
+                btnEncrypt.Font = new System.Drawing.Font("Tahoma", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+                this.btnEncrypt.BackColor = System.Drawing.Color.Maroon;
+            }
+            else
+            {
+                btnEncrypt.Font = new System.Drawing.Font("Tahoma", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+                btnEncrypt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            }
+        }
+
+        private void btnDecrypt_EnabledChanged(object sender, EventArgs e)
+        {
+            if (btnDecrypt.Enabled)
+            {
+                btnDecrypt.Font = new System.Drawing.Font("Tahoma", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+                btnDecrypt.BackColor = System.Drawing.Color.Green;
+            }
+            else
+            {
+                btnDecrypt.Font = new System.Drawing.Font("Tahoma", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+                btnDecrypt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            }
+        }
+
         #endregion
+
+
     }
 }

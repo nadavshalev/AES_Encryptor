@@ -8,13 +8,13 @@ D:\Data\OneDrive\Documents\Visual Studio 2017\AES_encryptor\AES_encryptor\bin\De
 D:\Data\OneDrive\Documents\Visual Studio 2017\AES_encryptor\AES_encryptor\bin\Debug\AES_encryptor.pdb
 D:\Data\OneDrive\Documents\Visual Studio 2017\AES_encryptor\AES_encryptor\obj\Debug\AES_encryptor.exe
 D:\Data\OneDrive\Documents\Visual Studio 2017\AES_encryptor\AES_encryptor\obj\Debug\AES_encryptor.pdb
-D:\Data\OneDrive\Documents\Prog\Visual Studio 2017\AES_encryptor\AES_encryptor\bin\Debug\AES_encryptor.exe.config
 D:\Data\OneDrive\Documents\Prog\Visual Studio 2017\AES_encryptor\AES_encryptor\bin\Debug\AES_encryptor.exe
-D:\Data\OneDrive\Documents\Prog\Visual Studio 2017\AES_encryptor\AES_encryptor\bin\Debug\AES_encryptor.pdb
-D:\Data\OneDrive\Documents\Prog\Visual Studio 2017\AES_encryptor\AES_encryptor\obj\Debug\AES_encryptor.csprojResolveAssemblyReference.cache
+D:\Data\OneDrive\Documents\Prog\Visual Studio 2017\AES_encryptor\AES_encryptor\bin\Debug\AES_encryptor.exe.config
 D:\Data\OneDrive\Documents\Prog\Visual Studio 2017\AES_encryptor\AES_encryptor\obj\Debug\AES_encryptor.Form1.resources
 D:\Data\OneDrive\Documents\Prog\Visual Studio 2017\AES_encryptor\AES_encryptor\obj\Debug\AES_encryptor.Properties.Resources.resources
 D:\Data\OneDrive\Documents\Prog\Visual Studio 2017\AES_encryptor\AES_encryptor\obj\Debug\AES_encryptor.csproj.GenerateResource.cache
 D:\Data\OneDrive\Documents\Prog\Visual Studio 2017\AES_encryptor\AES_encryptor\obj\Debug\AES_encryptor.csproj.CoreCompileInputs.cache
 D:\Data\OneDrive\Documents\Prog\Visual Studio 2017\AES_encryptor\AES_encryptor\obj\Debug\AES_encryptor.exe
 D:\Data\OneDrive\Documents\Prog\Visual Studio 2017\AES_encryptor\AES_encryptor\obj\Debug\AES_encryptor.pdb
+D:\Data\OneDrive\Documents\Prog\Visual Studio 2017\AES_encryptor\AES_encryptor\bin\Debug\AES_encryptor.pdb
+D:\Data\OneDrive\Documents\Prog\Visual Studio 2017\AES_encryptor\AES_encryptor\obj\Debug\AES_encryptor.csprojResolveAssemblyReference.cache
