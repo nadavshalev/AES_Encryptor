@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.27130.2024
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AES_encryptor", "AES_encryptor\AES_encryptor.csproj", "{0FDAFAC2-6E48-4232-B175-B13399322AF7}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup_AES_encryptor", "Setup_AES_encryptor\Setup_AES_encryptor.vdproj", "{30D68DE4-C0B9-48DC-A332-4548FC421469}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,8 @@ Global
 		{0FDAFAC2-6E48-4232-B175-B13399322AF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0FDAFAC2-6E48-4232-B175-B13399322AF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0FDAFAC2-6E48-4232-B175-B13399322AF7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{30D68DE4-C0B9-48DC-A332-4548FC421469}.Debug|Any CPU.ActiveCfg = Debug
+		{30D68DE4-C0B9-48DC-A332-4548FC421469}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
