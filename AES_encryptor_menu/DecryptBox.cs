@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AES_encryptor;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -6,6 +7,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -22,34 +24,37 @@ namespace AES_encryptor_menu
 
         private void btnDecrypt_Click(object sender, EventArgs e)
         {
-            AES_encryptor.AES256 aes = new AES_encryptor.AES256(txtPass.Text);
+            AES256 aes = new AES256(txtPass.Text);
 
-            try
+            new Thread(() =>
             {
-                foreach (var path in Pathes)
+                try
                 {
-                    string newPath = path.Substring(0, path.Length - MenuService.ENCRYPTED_FILE_EXTANTION.Length - 1);
-                    aes.DecryptFile(path, newPath);
-                    if (File.Exists(path))
+                    foreach (var path in Pathes)
                     {
-                        File.Delete(path);
+                        string newPath = path.Substring(0, path.Length - MenuService.ENCRYPTED_FILE_EXTANTION.Length - 1);
+                        aes.DecryptFile(path, newPath);
+                        if (File.Exists(path))
+                        {
+                            File.Delete(path);
+                        }
                     }
-                }
-                this.Close();
-            }
-            catch (Exception exp)
-            {
-                string msg;
-                if (exp.Message == "Padding is invalid and cannot be removed.")
-                    msg = "Wrong Password";
-                else if (exp.Message == "Length of the data to decrypt is invalid.")
-                    msg = "File is not encrypted";
-                else
-                    msg = exp.Message;
-                MessageBox.Show(msg, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
 
+                    this.Close();
+                }
+                catch (Exception exp)
+                {
+                    string msg;
+                    if (exp.Message == "Padding is invalid and cannot be removed.")
+                        msg = "Wrong Password";
+                    else if (exp.Message == "Length of the data to decrypt is invalid.")
+                        msg = "File is not encrypted";
+                    else
+                        msg = exp.Message;
+                    MessageBox.Show(msg, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }).Start();
+        }
         private void txtPass_TextChanged(object sender, EventArgs e)
         {
             if(txtPass.Text.Length >= MenuService.MIN_PASSWORD_LENGTH)

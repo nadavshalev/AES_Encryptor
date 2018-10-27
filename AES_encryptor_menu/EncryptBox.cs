@@ -6,6 +6,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -24,23 +25,28 @@ namespace AES_encryptor_menu
         {
             AES_encryptor.AES256 aes = new AES_encryptor.AES256(txtPass.Text);
 
-            try
+            new Thread(() =>
             {
-                foreach (var path in Pathes)
+                try
                 {
-                    aes.EncryptFile(path, path + "." + MenuService.ENCRYPTED_FILE_EXTANTION);
-                    if (File.Exists(path))
+                    foreach (var path in Pathes)
                     {
-                        File.Delete(path);
+                    
+                            aes.EncryptFile(path, path + "." + MenuService.ENCRYPTED_FILE_EXTANTION);
+                            if (File.Exists(path))
+                            {
+                                File.Delete(path);
+                            }
+                    
                     }
-                }
 
-                this.Close();
-            }
-            catch (Exception exp)
-            {
-                MessageBox.Show(exp.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+                    this.Close();
+                }
+                catch (Exception exp)
+                {
+                    MessageBox.Show(exp.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }).Start();
         }
 
         private void txtPass_TextChanged(object sender, EventArgs e)
